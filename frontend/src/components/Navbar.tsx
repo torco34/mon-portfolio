@@ -3,35 +3,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react"; // Iconos bonitos
 import { Link } from "react-router-dom";
 
-// export default function Navbar() {
-//   return (
-//     <nav className="flex justify-between items-center p-4 bg-white shadow-md">
-//       <h1 className="text-2xl font-bold text-blue-600">Mi Portafolio</h1>
-//       <ul className="flex gap-6">
-//         <li>
-//           <Link to="/" className="hover:text-blue-600">
-//             Home
-//           </Link>
-//         </li>
-//         <li>
-//           <Link to="/about" className="hover:text-blue-600">
-//             Sobre mí
-//           </Link>
-//         </li>
-//         <li>
-//           <Link to="/projects" className="hover:text-blue-600">
-//             Proyectos
-//           </Link>
-//         </li>
-//         <li>
-//           <Link to="/contact" className="hover:text-blue-600">
-//             Contacto
-//           </Link>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// }
+
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -84,7 +56,7 @@ export default function Navbar() {
 
       {/* Menú móvil */}
       {menuOpen && (
-        <div className="md:hidden bg-white shadow-md">
+        <div className="md:hidden bg-blue-200 shadow-md">
           <ul className="flex flex-col items-center gap-4 py-6 font-medium">
             <li>
               <Link
