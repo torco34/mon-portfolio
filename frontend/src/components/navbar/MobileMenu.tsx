@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
+import type { MobileMenuProps } from "./NavbarTypes";
 
-interface MobileMenuProps {
-  links: { path: string; label: string }[];
-  onClick?: () => void;
-}
 
 export const MobileMenu = ({ links, onClick }: MobileMenuProps) => {
   return (

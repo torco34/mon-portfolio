@@ -1,16 +1,11 @@
 import { useState } from "react";
 
-import { Menu, X } from "lucide-react"; // Iconos bonitos
+import { navbarLinks } from "../constants/navbarLinks";
 import { DesktopMenu } from "./DesktopMenu";
-import Logo from "./Logo";
+import { Logo } from "./Logo";
+import { MenuToggleButton } from "./MenuToggleButton";
 import { MobileMenu } from "./MobileMenu";
 export default function Navbar() {
-  const links = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "Sobre mí" },
-    { path: "/projects", label: "Proyectos" },
-    { path: "/contact", label: "Contacto" },
-  ];
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -19,20 +14,19 @@ export default function Navbar() {
         <Logo />
 
         {/* Menú escritorio */}
-        <DesktopMenu links={links} />
+        <DesktopMenu links={navbarLinks} />
 
         {/* Botón menú móvil */}
-        <button
-          className="md:hidden text-blue-600"
+
+        <MenuToggleButton
+          menuOpen={menuOpen}
           onClick={() => setMenuOpen(!menuOpen)}
-        >
-          {menuOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        />
       </div>
 
       {/* Menú móvil  */}
       {menuOpen && (
-        <MobileMenu links={links} onClick={() => setMenuOpen(false)} />
+        <MobileMenu links={navbarLinks} onClick={() => setMenuOpen(false)} />
       )}
     </nav>
   );

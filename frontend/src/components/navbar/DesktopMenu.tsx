@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
+import type { DesktopMenuProps } from "./NavbarTypes";
 
-interface DesktopMenuProps {
-  links: { path: string; label: string }[];
-}
 
 export const DesktopMenu = ({ links }: DesktopMenuProps) => {
   return (

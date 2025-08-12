@@ -1,9 +1,5 @@
-interface LogoProps {
-  showText?: boolean;
-  className?: string;
-}
-
-export default function Logo({ showText = false, className = "" }: LogoProps) {
+import type { LogoProps } from "./NavbarTypes";
+export const Logo = ({ showText = false, className = "" }: LogoProps) => {
   return (
     <div
       className={`flex items-center gap-2 ${className}`}
@@ -19,4 +15,4 @@ export default function Logo({ showText = false, className = "" }: LogoProps) {
       )}
     </div>
   );
-}
+};
