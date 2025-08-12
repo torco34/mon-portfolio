@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import Navbar from "./components/navbar/Navbar";
 import AboutPage from "./pages/AboutPage";
 import EducationPage from "./pages/EducationPage";
 import HomePage from "./pages/HomePage";
@@ -12,14 +12,16 @@ export default function App() {
   return (
     <>
       <Navbar />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
-        <Route path="/education" element={<EducationPage />} />
-        <Route path="/skills" element={<SkillsPage />} />
-        <Route path="*" element={<NotFoundPage />} />
-      </Routes>
+      <main className="pt-16">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/education" element={<EducationPage />} />
+          <Route path="/skills" element={<SkillsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </main>
     </>
   );
 }
