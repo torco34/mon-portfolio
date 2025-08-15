@@ -1,9 +1,8 @@
 const db = require('../DB/mysql');
+const table = 'projects';
+async function getAll() {
 
-function getAll() {
-    return db.all('projects');
+    return db.all(table);
 }
 
-module.exports = {
-    getAll
-};
+module.exports = { getAll };
