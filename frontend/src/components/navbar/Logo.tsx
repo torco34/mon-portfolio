@@ -5,7 +5,7 @@ export const Logo = ({ showText = false, className = "" }: LogoProps) => {
       className={`flex items-center gap-2 ${className}`}
       aria-label="torcoDev logo"
     >
-      <div className="w-20 h-10 rounded-lg bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center shadow-md">
+      <div className="w-20 h-10 rounded-lg bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center shadow-md">
         <span className="text-white font-bold">TorcoDev</span>
       </div>
       {showText && (
