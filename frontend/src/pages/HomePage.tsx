@@ -10,13 +10,16 @@ export default function HomePage() {
         image={foto}
         actions={[
           {
-            href: "#projects",
+            href: "/projects",
             label: "Ver Proyectos",
-            primary: true, // Botón principal azul
+            primary: true,
+            onClick: () => {},
           },
+          { href: "/contact", label: "Contáctame", onClick: () => {} },
           {
-            href: "#contact",
-            label: "Contáctame", // Botón secundario con borde
+            href: "https://github.com/torco34",
+            label: "GitHub",
+            onClick: () => {},
           },
         ]}
       />
