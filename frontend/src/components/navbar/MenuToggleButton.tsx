@@ -7,7 +7,7 @@ export const MenuToggleButton = ({
 }: MenuToggleButtonProps) => {
   return (
     <button
-      className="md:hidden  text-blue-600"
+      className="md:hidden  text-orange-600"
       onClick={onClick}
       aria-label="Toggle menu"
     >

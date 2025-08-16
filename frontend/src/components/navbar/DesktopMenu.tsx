@@ -1,18 +1,23 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import type { DesktopMenuProps } from "./NavbarTypes";
-
 
 export const DesktopMenu = ({ links }: DesktopMenuProps) => {
   return (
     <ul className="hidden md:flex gap-8 font-medium">
       {links.map((link) => (
         <li key={link.path}>
-          <Link
+          <NavLink
             to={link.path}
-            className="hover:text-blue-600 transition-colors"
+            className={({ isActive }) =>
+              `transition-colors ${
+                isActive
+                  ? "text-orange-700 border-b-2 border-primary pb-1" // activo
+                  : "hover:text-orange-600" // hover
+              }`
+            }
           >
             {link.label}
-          </Link>
+          </NavLink>
         </li>
       ))}
     </ul>
