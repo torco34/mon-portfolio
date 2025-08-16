@@ -1,10 +1,4 @@
-import React from "react";
-
-export interface Action {
-  href: string;
-  label: string;
-  primary?: boolean;
-}
+import type { Action } from "../ts/HomeType";
 
 interface ActionButtonsProps {
   actions: Action[];
