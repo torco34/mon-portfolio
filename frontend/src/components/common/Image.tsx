@@ -1,22 +1,13 @@
-import React from "react";
+import type { ImageProps } from "../ts/CommonType";
 
-export interface ImageProps {
-  src: string;
-  alt: string;
-  rounded?: boolean;
-  grayscale?: boolean;
-  border?: boolean;
-  className?: string;
-}
-
-export const Image: React.FC<ImageProps> = ({
+export const Image = ({
   src,
   alt,
   rounded = false,
   grayscale = false,
   border = false,
   className = "",
-}) => {
+}: ImageProps) => {
   return (
     <img
       src={src}

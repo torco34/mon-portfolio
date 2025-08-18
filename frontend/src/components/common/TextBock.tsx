@@ -1,18 +1,11 @@
-import React from "react";
+import type { TextBlockProps } from "../ts/CommonType";
 
-export interface TextBlockProps {
-  title: string;
-  description: string;
-  buttonLabel?: string;
-  buttonHref?: string;
-}
-
-export const TextBlock: React.FC<TextBlockProps> = ({
+export const TextBlock = ({
   title,
   description,
   buttonLabel,
   buttonHref,
-}) => {
+}: TextBlockProps) => {
   return (
     <div className="space-y-6">
       <h2 className="text-4xl  md:text-6xl font-extrabold  text-orange-400">
