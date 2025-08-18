@@ -9,7 +9,7 @@ export const HomeSection = ({
   image,
 }: HomeProps) => {
   return (
-    <section className="bg-gradient-to-br    bg-orange-100 min-h-screen flex items-center">
+    <section className="bg-gradient-to-br  bg-orange-100 min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6 animate-fadeIn">
           <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900  leading-tight">
