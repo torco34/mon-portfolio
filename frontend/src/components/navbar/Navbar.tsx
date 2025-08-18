@@ -10,7 +10,7 @@ export default function Navbar() {
 
   return (
     <nav className="fixed  w-full bg-orange-50 shadow-md z-150">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+      <div className="max-w-7xl mx-auto px-4  py-3 flex justify-between items-center">
         <Logo />
 
         {/* Menú escritorio */}

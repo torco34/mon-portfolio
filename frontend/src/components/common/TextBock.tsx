@@ -15,7 +15,7 @@ export const TextBlock: React.FC<TextBlockProps> = ({
 }) => {
   return (
     <div className="space-y-6">
-      <h2 className="text-3xl md:text-4xl font-bold text-orange-700">
+      <h2 className="text-4xl  md:text-6xl font-extrabold  text-orange-400">
         {title}
       </h2>
 
@@ -24,7 +24,7 @@ export const TextBlock: React.FC<TextBlockProps> = ({
       {buttonLabel && buttonHref && (
         <a
           href={buttonHref}
-          className="inline-block px-6 py-3 bg-orange-600 text-white rounded-lg shadow hover:bg-orange-700 transition"
+          className="inline-block px-6 py-3 bg-orange-500 text-white rounded-lg shadow hover:bg-orange-400 transition"
         >
           {buttonLabel}
         </a>
