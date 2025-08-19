@@ -1,62 +1,83 @@
-import { CardInform } from "../common/CardInform";
-const projects = [
-  {
-    title: "Portfolio Web",
-    subtitle: "React + Node.js",
-    description:
-      "Aplicación web moderna con frontend en React y backend en Node.js. Incluye autenticación y CRUD.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/4/47/React.svg",
-    actions: [
-      { label: "Ver Proyecto", href: "https://mi-portfolio.com" },
-      { label: "GitHub", href: "https://github.com/miusuario/portfolio" },
-    ],
-  },
-  {
-    title: "E-commerce App",
-    subtitle: "Next.js + MongoDB",
-    description:
-      "Plataforma de comercio electrónico con pasarela de pagos e integración de carrito.",
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/8/8e/Nextjs-logo.svg",
-    actions: [
-      { label: "Demo", href: "https://mi-ecommerce.com" },
-      { label: "GitHub", href: "https://github.com/miusuario/ecommerce" },
-    ],
-  },
-  {
-    title: "Blog Personal",
-    subtitle: "Astro + Tailwind",
-    description:
-      "Un blog rápido y optimizado para SEO con contenido dinámico y diseño minimalista.",
-    image: "https://upload.wikimedia.org/wikipedia/commons/1/1c/Astro_Logo.svg",
-    actions: [
-      { label: "Visitar", href: "https://mi-blog.com" },
-      { label: "GitHub", href: "https://github.com/miusuario/blog" },
-    ],
-  },
-];
-export const ProjectsSection = () => {
-  return (
-    <section className="bg-gradient-to-br from-orange-50 to-orange-100 min-h-screen py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-bold text-orange-700 mb-10 text-center">
-          Mis Proyectos
-        </h2>
+// Adjust this if you prefer to read from an env var
 
-        {/* Grid responsive */}
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.map((project, idx) => (
-            <CardInform
-              key={idx}
-              title={project.title}
-              subtitle={project.subtitle}
-              description={project.description}
-              image={project.image}
-              actions={project.actions}
-            />
-          ))}
-        </div>
+import { useEffect, useState } from "react";
+
+import { CardInform } from "../common/CardInform"; // importa tu componente
+// const API_URL = "http://localhost:4000/api/projects";
+interface Project {
+  id: number | string;
+  title: string;
+  subtitle?: string;
+  description?: string;
+  image?: string;
+  actions?: { label: string; href: string }[];
+}
+
+export default function ProjectList() {
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const fetchProjects = async () => {
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await fetch("http://localhost:4000/api/projects");
+      if (!res.ok) throw new Error("Error al traer proyectos");
+      const data = await res.json();
+
+      // mapear campos de la API → props que usa CardInform
+      type ApiProject = {
+        id: number | string;
+        title: string;
+        description?: string;
+        image_url?: string;
+        repo_url?: string;
+      };
+
+      const mapped = (data as ApiProject[]).map((p) => ({
+        id: p.id,
+        title: p.title,
+        description: p.description,
+        image: p.image_url, // mapeamos image_url → image
+        actions: p.repo_url ? [{ label: "Repositorio", href: p.repo_url }] : [],
+      }));
+
+      setProjects(mapped);
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Error inesperado");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
+
+  return (
+    <div className="max-w-6xl mx-auto p-6">
+      <h1 className="text-2xl font-bold mb-6">Proyectos</h1>
+
+      {loading && <p className="text-gray-500">Cargando...</p>}
+      {error && <p className="text-red-600">{error}</p>}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {projects.map((project) => (
+          <CardInform
+            key={project.id}
+            title={project.title}
+            subtitle={project.subtitle}
+            description={project.description}
+            image={project.image}
+            actions={project.actions}
+          />
+        ))}
       </div>
-    </section>
+    </div>
   );
-};
+}
