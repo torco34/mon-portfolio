@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const config = require('./config/config');
 const clienteRouter = require('./router/router');
-
+const contactRouter = require("./routes/contact");
 const app = express();
 
 // Middleware de logging manual
@@ -36,5 +36,6 @@ app.get("/ping", (req, res) => {
 
 // Rutas de proyectos
 app.use("/api/projects", clienteRouter);
+app.use("/api/contact", contactRouter);
 
 module.exports = app;
