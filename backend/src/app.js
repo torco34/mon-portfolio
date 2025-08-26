@@ -3,7 +3,7 @@ const morgan = require('morgan');
 const cors = require('cors');
 const config = require('./config/config');
 const clienteRouter = require('./router/router');
-const contactRouter = require("./routes/contact");
+const contactRouter = require("./router/contactsRouter");
 const app = express();
 
 // Middleware de logging manual

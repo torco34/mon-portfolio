@@ -1,12 +1,13 @@
 const nodemailer = require("nodemailer");
 
 const transporter = nodemailer.createTransport({
-    service: "gmail", // puedes usar "hotmail", "outlook", "yahoo", o SMTP personalizado
+    service: "gmail",
     auth: {
-        user: process.env.EMAIL_USER, // 👉 tu correo
-        pass: process.env.EMAIL_PASS  // 👉 tu contraseña de app (no la normal)
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
+
 
 async function sendContactForm({ nombre, correo, mensaje }) {
     const mailOptions = {

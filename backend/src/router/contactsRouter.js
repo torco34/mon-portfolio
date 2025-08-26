@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { sendContactForm } = require("../services/email");
+const { sendContactForm } = require("../service/email");
 
 router.post("/", async (req, res) => {
     try {
