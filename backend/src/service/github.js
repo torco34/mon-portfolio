@@ -1,66 +1,28 @@
-// services/github.js
-const fetch = require("node-fetch");
+// services/skills.js
+const { fetchAllRepos, fetchRepoLanguages } = require("./github");
 
-// Si quieres evitar límites de peticiones (rate limit) puedes usar un token de GitHub
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN || null;
+async function getSkillsFromGithub(username) {
+  const repos = await fetchAllRepos(username);
+  const totals = {};
 
-/**
- * 🔹 Obtiene todos los repositorios públicos de un usuario
- * @param {string} username - Nombre de usuario en GitHub
- * @returns {Promise<Array>} Lista de repositorios
- */
-async function fetchAllRepos(username) {
-  const headers = { "User-Agent": "skills-counter" };
-  if (GITHUB_TOKEN) {
-    headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
-  }
-
-  let page = 1;
-  const repos = [];
-
-  while (true) {
-    const res = await fetch(
-      `https://api.github.com/users/${username}/repos?per_page=100&page=${page}`,
-      { headers }
-    );
-
-    if (!res.ok) {
-      throw new Error(`Error al obtener repos de GitHub: ${res.status}`);
+  for (const repo of repos) {
+    const langs = await fetchRepoLanguages(repo.languages_url);
+    for (const [lang, bytes] of Object.entries(langs)) {
+      totals[lang] = (totals[lang] || 0) + bytes;
     }
-
-    const data = await res.json();
-    repos.push(...data);
-
-    // GitHub devuelve máx. 100 por página. Si ya no hay más, cortamos.
-    if (data.length < 100) break;
-
-    page++;
   }
 
-  // Filtramos para que NO aparezcan los repos que son fork
-  return repos.filter(r => !r.fork);
+  return totals;
 }
 
-/**
- * 🔹 Obtiene las estadísticas de lenguajes de un repositorio
- * @param {string} languages_url - URL que GitHub da para lenguajes
- * @returns {Promise<Object>} Ejemplo: { JavaScript: 12345, HTML: 5678 }
- */
-async function fetchRepoLanguages(languages_url) {
-  const headers = { "User-Agent": "skills-counter" };
-  if (GITHUB_TOKEN) {
-    headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
-  }
-
-  const res = await fetch(languages_url, { headers });
-  if (!res.ok) {
-    return {};
-  }
-
-  return res.json();
+function normalizeSkills(totals) {
+  const sum = Object.values(totals).reduce((a, b) => a + b, 0);
+  return Object.entries(totals)
+    .map(([lang, val]) => ({
+      lang,
+      percent: ((val / sum) * 100).toFixed(1),
+    }))
+    .sort((a, b) => b.percent - a.percent);
 }
 
-module.exports = {
-  fetchAllRepos,
-  fetchRepoLanguages
-};
+module.exports = { getSkillsFromGithub, normalizeSkills };
