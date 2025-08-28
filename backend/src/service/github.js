@@ -1,28 +1,51 @@
-// services/skills.js
-const { fetchAllRepos, fetchRepoLanguages } = require("./github");
 
-async function getSkillsFromGithub(username) {
-  const repos = await fetchAllRepos(username);
-  const totals = {};
 
-  for (const repo of repos) {
-    const langs = await fetchRepoLanguages(repo.languages_url);
-    for (const [lang, bytes] of Object.entries(langs)) {
-      totals[lang] = (totals[lang] || 0) + bytes;
-    }
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || null;
+
+async function fetchAllRepos(username) {
+  const headers = { "User-Agent": "skills-counter" };
+  if (GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
   }
 
-  return totals;
+  let page = 1;
+  const repos = [];
+
+  while (true) {
+    const res = await fetch(
+      `https://api.github.com/users/${username}/repos?per_page=100&page=${page}`,
+      { headers }
+    );
+
+    if (!res.ok) {
+      throw new Error(`Error al obtener repos de GitHub: ${res.status}`);
+    }
+
+    const data = await res.json();
+    repos.push(...data);
+
+    if (data.length < 100) break;
+    page++;
+  }
+
+  return repos.filter(r => !r.fork);
 }
 
-function normalizeSkills(totals) {
-  const sum = Object.values(totals).reduce((a, b) => a + b, 0);
-  return Object.entries(totals)
-    .map(([lang, val]) => ({
-      lang,
-      percent: ((val / sum) * 100).toFixed(1),
-    }))
-    .sort((a, b) => b.percent - a.percent);
+async function fetchRepoLanguages(languages_url) {
+  const headers = { "User-Agent": "skills-counter" };
+  if (GITHUB_TOKEN) {
+    headers.Authorization = `Bearer ${GITHUB_TOKEN}`;
+  }
+
+  const res = await fetch(languages_url, { headers });
+  if (!res.ok) {
+    return {};
+  }
+
+  return res.json();
 }
 
-module.exports = { getSkillsFromGithub, normalizeSkills };
+module.exports = {
+  fetchAllRepos,
+  fetchRepoLanguages
+};

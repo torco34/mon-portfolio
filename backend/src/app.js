@@ -4,6 +4,7 @@ const cors = require('cors');
 const config = require('./config/config');
 const clienteRouter = require('./router/router');
 const contactRouter = require("./router/contactsRouter");
+const skillsRouter = require("./router/skillRouter");
 const app = express();
 
 // Middleware de logging manual
@@ -37,5 +38,5 @@ app.get("/ping", (req, res) => {
 // Rutas de proyectos
 app.use("/api/projects", clienteRouter);
 app.use("/api/contact", contactRouter);
-
+app.use("/api/skills", skillsRouter);
 module.exports = app;
