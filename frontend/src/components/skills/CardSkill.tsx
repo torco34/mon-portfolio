@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Image } from "./Image";
+import { Image } from "../common/Image";
 
 type CardAction = {
   label: string;
@@ -8,20 +8,40 @@ type CardAction = {
   onClick?: () => void;
 };
 
-interface CardItemProps {
+interface LanguageData {
+  lang: string;
+  percent: number;
+}
+
+interface CardInformProps {
   title: string;
   subtitle?: string;
   description?: string;
   image?: string;
   actions?: CardAction[];
+  data: LanguageData[];
 }
 
-export const CardInform: React.FC<CardItemProps> = ({
+const COLORS: Record<string, string> = {
+  JavaScript: "#f7df1e",
+  HTML: "#e34c26",
+  TypeScript: "#3178c6",
+  CSS: "#264de4",
+  Vue: "#42b883",
+  SCSS: "#c6538c",
+  Shell: "#89e051",
+  React: "#61dafb",
+  Express: "#444444",
+  "Node.js": "#68a063",
+};
+
+export const CardSkill: React.FC<CardInformProps> = ({
   title,
   subtitle,
   description,
   image,
   actions = [],
+  data,
 }) => {
   return (
     <div
@@ -48,6 +68,27 @@ export const CardInform: React.FC<CardItemProps> = ({
             {description}
           </p>
         )}
+      </div>
+
+      {/* Barras de progreso */}
+      <div className="space-y-3">
+        {data.map((item) => (
+          <div key={item.lang}>
+            <div className="flex justify-between text-sm font-medium">
+              <span>{item.lang}</span>
+              <span>{item.percent}%</span>
+            </div>
+            <div className="w-full bg-gray-200 rounded-full h-2">
+              <div
+                className="h-2 rounded-full"
+                style={{
+                  width: `${item.percent}%`,
+                  backgroundColor: COLORS[item.lang] || "#ccc",
+                }}
+              />
+            </div>
+          </div>
+        ))}
       </div>
 
       {/* Acciones opcionales */}
