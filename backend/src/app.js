@@ -35,6 +35,11 @@ app.get("/ping", (req, res) => {
     res.send("pong 🏓");
 });
 
+
+console.log("Servidor en puerto:", config.app.port);
+console.log("MySQL conectado a:", config.mysql.host);
+console.log("GitHub user:", config.github.username);
+
 // Rutas de proyectos
 app.use("/api/projects", clienteRouter);
 app.use("/api/contact", contactRouter);

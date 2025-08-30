@@ -1,4 +1,4 @@
-require('dotenv').config(); // ← IMPORTANTE
+require('dotenv').config(); // ← carga el .env
 
 module.exports = {
     app: {
@@ -10,4 +10,12 @@ module.exports = {
         password: process.env.MYSQL_PASSWORD,
         database: process.env.MYSQL_DB,
     },
+    github: {
+        username: process.env.GITHUB_USERNAME,
+        token: process.env.GITHUB_TOKEN,
+    },
+    email: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+    }
 };
