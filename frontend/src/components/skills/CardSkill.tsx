@@ -13,13 +13,10 @@ interface LanguageData {
   percent: number;
 }
 
-interface CardInformProps {
-  title: string;
-  subtitle?: string;
-  description?: string;
+interface CardSkillProps {
+  skill: LanguageData;
   image?: string;
   actions?: CardAction[];
-  data: LanguageData[];
 }
 
 const COLORS: Record<string, string> = {
@@ -35,13 +32,10 @@ const COLORS: Record<string, string> = {
   "Node.js": "#68a063",
 };
 
-export const CardSkill: React.FC<CardInformProps> = ({
-  title,
-  subtitle,
-  description,
+export const CardSkill: React.FC<CardSkillProps> = ({
+  skill,
   image,
   actions = [],
-  data,
 }) => {
   return (
     <div
@@ -53,7 +47,7 @@ export const CardSkill: React.FC<CardInformProps> = ({
         <div className="flex justify-center">
           <Image
             src={image}
-            alt={title || ""}
+            alt={skill.lang}
             className="max-w-[96px] rounded-xl"
           />
         </div>
@@ -61,34 +55,19 @@ export const CardSkill: React.FC<CardInformProps> = ({
 
       {/* Texto */}
       <div>
-        <h3 className="text-xl font-bold text-orange-700">{title}</h3>
-        {subtitle && <p className="text-gray-700 font-medium">{subtitle}</p>}
-        {description && (
-          <p className="text-gray-600 text-sm mt-2 leading-relaxed">
-            {description}
-          </p>
-        )}
+        <h3 className="text-lg font-bold text-orange-700">{skill.lang}</h3>
+        <p className="text-gray-700 font-medium">{skill.percent}%</p>
       </div>
 
-      {/* Barras de progreso */}
-      <div className="space-y-3">
-        {data.map((item) => (
-          <div key={item.lang}>
-            <div className="flex justify-between text-sm font-medium">
-              <span>{item.lang}</span>
-              <span>{item.percent}%</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2">
-              <div
-                className="h-2 rounded-full"
-                style={{
-                  width: `${item.percent}%`,
-                  backgroundColor: COLORS[item.lang] || "#ccc",
-                }}
-              />
-            </div>
-          </div>
-        ))}
+      {/* Barra de progreso */}
+      <div className="w-full bg-gray-200 rounded-full h-2">
+        <div
+          className="h-2 rounded-full"
+          style={{
+            width: `${skill.percent}%`,
+            backgroundColor: COLORS[skill.lang] || "#ccc",
+          }}
+        />
       </div>
 
       {/* Acciones opcionales */}

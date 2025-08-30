@@ -37,6 +37,11 @@ export const HomeSection = ({
             border
             className="w-100 h-100"
           />
+          <div className="mt-4 text-orange-300 text-cente">
+            <h2 className="">informacion traida de github</h2>
+            <p> JavaScript</p>
+            <p> TypeScript</p>
+          </div>
         </div>
       </div>
     </section>

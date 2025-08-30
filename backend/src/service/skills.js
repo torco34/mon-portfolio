@@ -1,5 +1,16 @@
 const { fetchAllRepos, fetchRepoLanguages, fetchFileFromRepo } = require("./github");
 
+const ALLOWED = [
+    "JavaScript",
+    "TypeScript",
+    "HTML",
+    "CSS",
+    "React",
+    "Express",
+    "Node.js",
+    "MySQL"
+];
+
 /**
  * 🔹 Obtiene las skills de un usuario en GitHub
  * - Suma lenguajes por bytes
@@ -10,11 +21,11 @@ const { fetchAllRepos, fetchRepoLanguages, fetchFileFromRepo } = require("./gith
  * @returns {Promise<Object>}
  */
 async function getSkillsFromGithub(username) {
-    const repos = await fetchAllRepos(username); // 🔹 ahora devuelve objetos completos
+    const repos = await fetchAllRepos(username); 
     const skills = {};
 
     for (const repo of repos) {
-        // 1. Obtener lenguajes
+        // 1. Obtener lenguajes directamente desde la API de GitHub
         try {
             const langs = await fetchRepoLanguages(username, repo.name);
             for (const [lang, bytes] of Object.entries(langs)) {
@@ -28,20 +39,15 @@ async function getSkillsFromGithub(username) {
         try {
             const packageJson = await fetchFileFromRepo(username, repo.name, "package.json");
 
-            if (packageJson && packageJson.dependencies) {
-                const deps = packageJson.dependencies;
+            if (packageJson) {
+                const deps = {
+                    ...packageJson.dependencies,
+                    ...packageJson.devDependencies
+                };
 
-                if (deps.react) skills["React"] = (skills["React"] || 0) + 1;
-                if (deps.next) skills["Next.js"] = (skills["Next.js"] || 0) + 1;
-                if (deps.express) skills["Express"] = (skills["Express"] || 0) + 1;
-            }
-
-            if (packageJson && packageJson.devDependencies) {
-                const devDeps = packageJson.devDependencies;
-
-                if (devDeps.react) skills["React"] = (skills["React"] || 0) + 1;
-                if (devDeps.next) skills["Next.js"] = (skills["Next.js"] || 0) + 1;
-                if (devDeps.express) skills["Express"] = (skills["Express"] || 0) + 1;
+                if (deps?.react) skills["React"] = (skills["React"] || 0) + 5000;
+                if (deps?.express) skills["Express"] = (skills["Express"] || 0) + 5000;
+                if (deps?.mysql) skills["MySQL"] = (skills["MySQL"] || 0) + 5000;
             }
         } catch (e) {
             console.log(`⚠️ No se pudo leer package.json de ${repo.name}`);
@@ -49,11 +55,16 @@ async function getSkillsFromGithub(username) {
     }
 
     // 3. Agregar Node.js si hay JS/TS y Express
-    if (skills["JavaScript"] || skills["TypeScript"]) {
-        skills["Node.js"] = (skills["Node.js"] || 0) + 1;
+    if ((skills["JavaScript"] || skills["TypeScript"]) && skills["Express"]) {
+        skills["Node.js"] = (skills["Node.js"] || 0) + 5000;
     }
 
-    return skills;
+    // 4. 🔹 Filtrar solo tecnologías permitidas y con valor > 0
+    const filtered = Object.fromEntries(
+        Object.entries(skills).filter(([lang, val]) => ALLOWED.includes(lang) && val > 0)
+    );
+
+    return filtered;
 }
 
 /**
