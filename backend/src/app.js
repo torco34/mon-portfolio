@@ -7,6 +7,7 @@ const contactRouter = require("./router/contactsRouter");
 const skillsRouter = require("./router/skillRouter");
 const clientesRoutes = require('./router/experiencesRouter');
 const projectsRoutes = require('./router/projectRouter');
+const githubRouter = require("./router/githubRouter");
 const app = express();
 
 // Middleware de logging manual
@@ -48,5 +49,6 @@ app.use("/api/contact", contactRouter);
 app.use("/api/skills", skillsRouter);
 app.use('/api/experiences', clientesRoutes);
 app.use("/api/courses", coursesRouter);
+app.use("/api/github", githubRouter);
 
 module.exports = app;
