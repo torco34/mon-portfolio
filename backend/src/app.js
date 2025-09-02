@@ -5,6 +5,8 @@ const config = require('./config/config');
 const clienteRouter = require('./router/router');
 const contactRouter = require("./router/contactsRouter");
 const skillsRouter = require("./router/skillRouter");
+const clientesRoutes = require('./router/experiencesRouter');
+const projectsRoutes = require('./router/projectRouter');
 const app = express();
 
 // Middleware de logging manual
@@ -41,7 +43,9 @@ console.log("MySQL conectado a:", config.mysql.host);
 console.log("GitHub user:", config.github.username);
 
 // Rutas de proyectos
-app.use("/api/projects", clienteRouter);
+app.use('/api/projects', projectsRoutes);
 app.use("/api/contact", contactRouter);
 app.use("/api/skills", skillsRouter);
+app.use('/api/clientes', clientesRoutes);
+
 module.exports = app;
