@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const cors = require('cors');
 const config = require('./config/config');
-const clienteRouter = require('./router/router');
+const coursesRouter = require("./router/coursesRouter");
 const contactRouter = require("./router/contactsRouter");
 const skillsRouter = require("./router/skillRouter");
 const clientesRoutes = require('./router/experiencesRouter');
@@ -46,6 +46,7 @@ console.log("GitHub user:", config.github.username);
 app.use('/api/projects', projectsRoutes);
 app.use("/api/contact", contactRouter);
 app.use("/api/skills", skillsRouter);
-app.use('/api/clientes', clientesRoutes);
+app.use('/api/experiences', clientesRoutes);
+app.use("/api/courses", coursesRouter);
 
 module.exports = app;
