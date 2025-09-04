@@ -1,17 +1,7 @@
-// Adjust this if you prefer to read from an env var
-
 import { useEffect, useState } from "react";
 
-import { CardInform } from "../common/CardInform"; // importa tu componente
-// const API_URL = "http://localhost:4000/api/projects";
-interface Project {
-  id: number | string;
-  title: string;
-  subtitle?: string;
-  description?: string;
-  image?: string;
-  actions?: { label: string; href: string }[];
-}
+import { CardInform } from "../common/CardInform";
+import type { Project } from "../ts/ProjectsSetion";
 
 export default function ProjectList() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -61,8 +51,6 @@ export default function ProjectList() {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Proyectos</h1>
-
       {loading && <p className="text-gray-500">Cargando...</p>}
       {error && <p className="text-red-600">{error}</p>}
 

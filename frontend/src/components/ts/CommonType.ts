@@ -12,3 +12,8 @@ export interface TextBlockProps {
   buttonLabel?: string;
   buttonHref?: string;
 }
+// header
+export interface PageHeaderProps {
+  title: string;
+  description?: string;
+}

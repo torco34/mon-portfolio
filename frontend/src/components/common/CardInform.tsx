@@ -44,7 +44,7 @@ export const CardInform: React.FC<CardItemProps> = ({
         <h3 className="text-xl font-bold text-orange-400">{title}</h3>
         {subtitle && <p className="text-gray-700 font-medium">{subtitle}</p>}
         {description && (
-          <p className="text-gray-600 h-40 text-sm mt-2 leading-relaxed">
+          <p className="text-gray-600 h-30 text-sm mt-2 leading-relaxed">
             {description}
           </p>
         )}
@@ -60,7 +60,7 @@ export const CardInform: React.FC<CardItemProps> = ({
                 href={action.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full  py-2 text-sm text-center bg-orange-400 text-white rounded-lg shadow hover:bg-orange-700 transition"
+                className="w-full  py-2 text-sm text-center bg-orange-400 text-white rounded-lg shadow hover:bg-orange-500 transition"
               >
                 {action.label}
               </a>
@@ -68,7 +68,7 @@ export const CardInform: React.FC<CardItemProps> = ({
               <button
                 key={idx}
                 onClick={action.onClick}
-                // className="w-full py-2 text-sm text-center bg-orange-600 text-white rounded-lg shadow hover:bg-orange-700 transition"
+                className="w-full py-2 text-sm text-center bg-orange-600 text-white rounded-lg shadow hover:bg-orange-700 transition"
               >
                 {action.label}
               </button>
