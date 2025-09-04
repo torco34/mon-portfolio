@@ -73,7 +73,7 @@ export default function ProjectList() {
             title={project.title}
             subtitle={project.subtitle}
             description={project.description}
-            image={project.image}
+            image={`/img/${project.image}`}
             actions={project.actions}
           />
         ))}

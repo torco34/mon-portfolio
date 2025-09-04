@@ -34,14 +34,14 @@ export const CardInform: React.FC<CardItemProps> = ({
           <Image
             src={image}
             alt={title || ""}
-            className="max-w-[96px] rounded-xl"
+            className="max-w-[300px] rounded-xl"
           />
         </div>
       )}
 
       {/* Texto */}
       <div>
-        <h3 className="text-xl font-bold text-orange-700">{title}</h3>
+        <h3 className="text-xl font-bold text-orange-400">{title}</h3>
         {subtitle && <p className="text-gray-700 font-medium">{subtitle}</p>}
         {description && (
           <p className="text-gray-600 text-sm mt-2 leading-relaxed">
