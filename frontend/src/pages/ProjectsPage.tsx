@@ -7,8 +7,9 @@ export default function ProjectsPage() {
     <>
       <PageHeader
         title="Proyectos"
-        description="Este es un proyecto hecho con Node.js y React"
+        description="Aplicación desarrollada con Node.js, Express y React, conectada a una base de datos MySQL."
       />
+
       <ProjectsSection />
     </>
   );

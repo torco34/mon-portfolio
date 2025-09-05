@@ -53,9 +53,9 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-orange-50 dark:bg-gray-100 shadow-lg rounded-2xl p-8 space-y-6 border border-orange-200"
+      className="bg-orange-50 dark:bg-orange-50 shadow-xl rounded-2xl p-8 space-y-6 border border-orange-200 max-w-lg mx-auto"
     >
-      <h2 className="text-2xl font-bold text-orange-700 mb-4 text-center">
+      <h2 className="text-2xl font-bold text-orange-400 mb-4 text-center">
         Contáctame
       </h2>
 
@@ -86,15 +86,15 @@ export default function ContactForm() {
 
       {/* Estado del envío */}
       {status === "loading" && (
-        <p className="text-orange-500 text-center">Enviando...</p>
+        <p className="text-orange-500 text-center animate-pulse">Enviando...</p>
       )}
       {status === "success" && (
-        <p className="text-green-600 text-center">
+        <p className="text-green-600 text-center font-semibold">
           ✅ Mensaje enviado con éxito
         </p>
       )}
       {status === "error" && (
-        <p className="text-red-600 text-center">
+        <p className="text-red-600 text-center font-semibold">
           ❌ Ocurrió un error al enviar. Intenta nuevamente.
         </p>
       )}

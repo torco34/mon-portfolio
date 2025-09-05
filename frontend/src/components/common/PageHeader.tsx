@@ -2,8 +2,8 @@ import type { PageHeaderProps } from "../ts/CommonType";
 
 export const PageHeader = ({ title, description }: PageHeaderProps) => {
   return (
-    <header className="text-center mb-12">
-      <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight mb-6">
+    <header className="text-center  mb-10">
+      <h1 className="text-4xl mt-7 md:text-6xl font-extrabold text-gray-600 leading-tight mb-6">
         {title}
       </h1>
       {description && (
