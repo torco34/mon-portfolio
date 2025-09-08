@@ -6,3 +6,10 @@ export interface Project {
   image?: string;
   actions?: { label: string; href: string }[];
 }
+export type ApiProject = {
+  id: number | string;
+  title: string;
+  description?: string;
+  image_url?: string;
+  repo_url?: string;
+};

@@ -33,6 +33,7 @@ function createMysql() {
 
 createMysql();
 
+
 /* 🔹 CRUD Genérico */
 
 // Traer todos
@@ -86,7 +87,10 @@ function remove(table, id) {
   });
 }
 
+
 module.exports = {
+    query: (...args) => connection.query(...args),
+
     findAll,
     findById,
     create,

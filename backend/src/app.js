@@ -51,4 +51,6 @@ app.use('/api/experiences', clientesRoutes);
 app.use("/api/courses", coursesRouter);
 app.use("/api/github", githubRouter);
 
+// app.use("/api/skills", skillsRoutes);
+
 module.exports = app;
