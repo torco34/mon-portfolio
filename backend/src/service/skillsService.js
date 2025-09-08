@@ -1,28 +1,38 @@
 const skillsCache = require("../models/skillsCache");
+const { fetchSkillsFromGithub } = require("./github");
 
 async function getSkillsWithCache(username) {
-    const cache = await skillsCache.findByUsername(username);
+    // Buscar en la cache
+    const cached = await skillsCache.findByUsername(username);
 
-    if (cache) {
-        console.log("✅ Usando cache de skills");
+    if (cached) {
+        const updatedAt = new Date(cached.updated_at);
+        const now = new Date();
 
-        let skills;
-        // 👇 Verifica si es string antes de parsear
-        if (typeof cache.data === "string") {
-            skills = JSON.parse(cache.data);
-        } else {
-            skills = cache.data; // ya es objeto
+        // diferencia en horas
+        const hoursDiff = (now - updatedAt) / (1000 * 60 * 60);
+
+        if (hoursDiff < 24) {
+            console.log("✅ Usando cache de skills");
+
+            // si `data` viene como string en MySQL → parseamos
+            // si ya es objeto (algunas configuraciones de MySQL con JSON lo devuelven así) → lo usamos directo
+            const skills = typeof cached.data === "string"
+                ? JSON.parse(cached.data)
+                : cached.data;
+
+            return skills;
         }
-
-        return skills;
     }
 
-    console.log("🌐 Llamando a GitHub API...");
-    // aquí llamas a GitHub y luego guardas en cache
-    const githubSkills = await fetchFromGitHub(username);
-    await skillsCache.createOrUpdate(username, githubSkills);
+    // Si no hay cache o está viejo → pedimos a GitHub
+    console.log("♻️ Actualizando skills desde GitHub");
+    const skills = await fetchSkillsFromGithub(username);
 
-    return githubSkills;
+    // Guardar en BD
+    await skillsCache.createOrUpdate(username, skills);
+
+    return skills;
 }
 
 module.exports = { getSkillsWithCache };
