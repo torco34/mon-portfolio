@@ -1,16 +1,7 @@
 import { Loader2 } from "lucide-react"; // icono spinner
+import type { ApiStatusProps } from "../ts/CommonType";
 
-type ApiStatusProps = {
-  loading: boolean;
-  error: string | null;
-  children: React.ReactNode;
-};
-
-export default function ApiStatus({
-  loading,
-  error,
-  children,
-}: ApiStatusProps) {
+export const ApiStatus = ({ loading, error, children }: ApiStatusProps) => {
   if (loading) {
     return (
       <div className="flex flex-col items-center justify-center py-10 text-gray-600">
@@ -29,4 +20,4 @@ export default function ApiStatus({
   }
 
   return <>{children}</>;
-}
+};

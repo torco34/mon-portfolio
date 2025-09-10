@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import { getProjects } from "../../API/index";
-import ApiStatus from "../common/ApiStatus";
+import { ApiStatus } from "../common/ApiStatus";
 import { CardInform } from "../common/CardInform";
 import type { ApiProject, Project } from "../ts/ProjectsSetion";
 

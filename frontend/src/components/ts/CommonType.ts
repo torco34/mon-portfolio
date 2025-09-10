@@ -17,3 +17,9 @@ export interface PageHeaderProps {
   title: string;
   description?: string;
 }
+// api status
+export interface ApiStatusProps {
+  loading: boolean;
+  error: string | null;
+  children: React.ReactNode;
+}
