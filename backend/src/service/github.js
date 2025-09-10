@@ -1,74 +1,86 @@
-
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 
 /**
- * 🔹 Obtiene todos los repos de un usuario
- * @param {string} username
- * @returns {Promise<Array>}
+ * 🔹 Helper para headers (con token opcional)
  */
-async function fetchAllRepos(username) {
-  const headers = { "User-Agent": "skills-counter" };
-  if (GITHUB_TOKEN) {
-
-    headers.Authorization = `token ${GITHUB_TOKEN}`;
-
-  }
-
-  const res = await fetch(`https://api.github.com/users/${username}/repos`, { headers });
-  if (!res.ok) throw new Error(`Error al obtener repos: ${res.status}`);
-
-  return res.json(); // 👈 devuelve objetos completos
-}
-
-
-/**
- * 🔹 Obtiene los lenguajes de un repo específico
- * @param {string} username
- * @param {string} repo
- * @returns {Promise<Object>}
- */
-async function fetchRepoLanguages(username, repo) {
+function getHeaders() {
   const headers = { "User-Agent": "skills-counter" };
   if (GITHUB_TOKEN) headers.Authorization = `token ${GITHUB_TOKEN}`;
+  return headers;
+}
 
-
-  const res = await fetch(`https://api.github.com/repos/${username}/${repo}/languages`, { headers });
-  console.log("🌐 Consultando:", res);
-  if (!res.ok) throw new Error(`Error al obtener lenguajes: ${res.status}`);
-
+/**
+ * 🔹 Obtiene todos los repositorios de un usuario
+ */
+async function fetchAllRepos(username) {
+  const res = await fetch(`https://api.github.com/users/${username}/repos`, {
+    headers: getHeaders(),
+  });
+  if (!res.ok) throw new Error(`Error al obtener repos: ${res.status}`);
   return res.json();
 }
 
 /**
- * 🔹 Lee un archivo específico dentro de un repositorio (ej: package.json)
- * @param {string} username - Nombre de usuario
- * @param {string} repo - Nombre del repositorio
- * @param {string} path - Ruta del archivo dentro del repo
- * @returns {Promise<Object|string>} Contenido del archivo
+ * 🔹 Obtiene los lenguajes de un repo específico
+ */
+async function fetchRepoLanguages(username, repo) {
+  const res = await fetch(
+    `https://api.github.com/repos/${username}/${repo}/languages`,
+    { headers: getHeaders() }
+  );
+  if (!res.ok) throw new Error(`Error al obtener lenguajes: ${res.status}`);
+  return res.json();
+}
+
+/**
+ * 🔹 Lee un archivo de un repositorio (ej: package.json)
  */
 async function fetchFileFromRepo(username, repo, path) {
-  const headers = { "User-Agent": "skills-counter" };
-  if (GITHUB_TOKEN) headers.Authorization = `token ${GITHUB_TOKEN}`;
+  const res = await fetch(
+    `https://api.github.com/repos/${username}/${repo}/contents/${path}`,
+    { headers: getHeaders() }
+  );
 
-
-  const res = await fetch(`https://api.github.com/repos/${username}/${repo}/contents/${path}`, { headers });
-
-  if (res.status === 404) return null; // archivo no existe
+  if (res.status === 404) return null;
   if (!res.ok) throw new Error(`Error al leer archivo: ${res.status}`);
 
   const data = await res.json();
   const content = Buffer.from(data.content, "base64").toString("utf-8");
 
   try {
-    return JSON.parse(content); // si es un JSON válido (ej: package.json)
+    return JSON.parse(content);
   } catch {
     return content;
   }
 }
 
+/**
+ * 🔹 Construye el resumen de skills desde GitHub
+ */
+async function fetchSkillsFromGithub(username) {
+  const repos = await fetchAllRepos(username);
+
+  let total = {};
+  for (const repo of repos) {
+    const langs = await fetchRepoLanguages(username, repo.name);
+
+    for (const [lang, bytes] of Object.entries(langs)) {
+      total[lang] = (total[lang] || 0) + bytes;
+    }
+  }
+
+  const sum = Object.values(total).reduce((a, b) => a + b, 0);
+
+  // Normalizamos a porcentajes
+  return Object.entries(total).map(([lang, bytes]) => ({
+    lang,
+    percent: ((bytes / sum) * 100).toFixed(1),
+  }));
+}
+
 module.exports = {
   fetchAllRepos,
   fetchRepoLanguages,
-  fetchFileFromRepo
+  fetchFileFromRepo,
+  fetchSkillsFromGithub, // 👈 ahora sí lo exportamos
 };
-

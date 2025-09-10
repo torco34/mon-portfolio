@@ -5,7 +5,7 @@ export default function HomePage() {
     <>
       <HomeSection
         title="HOLA, SOY"
-        highlighted="TORCOROMA"
+        highlighted="TORCO."
         description="Desarrollador Full Stack apasionado por crear experiencias web rápidas, modernas y atractivas. Aquí podrás explorar mis proyectos, habilidades y trayectoria."
         image={foto}
         actions={[

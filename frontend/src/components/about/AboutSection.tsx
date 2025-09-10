@@ -3,7 +3,7 @@ import { Image } from "../common/Image";
 import { TextBlock } from "../common/TextBock";
 export function AboutSection() {
   return (
-    <section className="bg-gradient-to-br  bg-orange-100 min-h-screen flex items-center">
+    <section className="bg-gradient-to-br   min-h-screen flex items-center">
       <div className="max-w-6xl mx-auto px-6  h-100 grid md:grid-cols-2 gap-12 items-center">
         <div className="flex  justify-center">
           <Image src={foto} alt="Ejemplo" grayscale className="w-100 h-100" />
