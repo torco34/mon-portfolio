@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Navbar from "./components/navbar/Navbar";
+import { LanguageProvider } from "./context/LanguageContext";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
 import EducationPage from "./pages/EducationPage";
@@ -9,9 +10,10 @@ import ProjectsPage from "./pages/ProjectsPage";
 import SkillsPage from "./pages/SkillsPage";
 
 import "./App.css";
+
 export default function App() {
   return (
-    <>
+    <LanguageProvider>
       <Navbar />
       <main className="pt-16">
         <Routes>
@@ -24,6 +26,6 @@ export default function App() {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </main>
-    </>
+    </LanguageProvider>
   );
 }
