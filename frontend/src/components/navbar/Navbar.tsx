@@ -1,12 +1,13 @@
 import { useState } from "react";
 
-import { Globe, Languages } from "lucide-react";
-import { useLanguage } from "../../context/LanguageContext";
 import { navbarLinks } from "../constants/navbarLinks";
 import { DesktopMenu } from "./DesktopMenu";
+import { LanguageToggleButton } from "./LanguageToggleButton";
 import { Logo } from "./Logo";
 import { MenuToggleButton } from "./MenuToggleButton";
 import { MobileMenu } from "./MobileMenu";
+
+// import { Globe, Languages } from "lucide-react";
 
 // 👇 Importa el hook del contexto
 
@@ -14,7 +15,7 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   // 👇 Hook de idioma
-  const { lang, setLang } = useLanguage();
+  // const { lang, setLang } = useLanguage();
 
   return (
     <nav className="fixed w-full bg-orange-50 shadow-md z-150">
@@ -25,7 +26,8 @@ export default function Navbar() {
         <DesktopMenu links={navbarLinks} />
 
         {/* Botón para cambiar idioma */}
-        <button
+        <LanguageToggleButton className="ml-4" />
+        {/* <button
           onClick={() => setLang(lang === "es" ? "en" : "es")}
           className="ml-4 flex items-center gap-2 px-3 py-2 border border-orange-400  bg-orange-50 text-orange-500 rounded-full shadow-md hover:bg-orange-200 transition"
         >
@@ -38,7 +40,7 @@ export default function Navbar() {
               <Languages size={18} /> Englesh
             </>
           )}
-        </button>
+        </button> */}
 
         {/* Botón menú móvil */}
         <MenuToggleButton

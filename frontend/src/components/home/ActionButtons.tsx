@@ -13,7 +13,7 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ actions }) => {
         <a
           key={idx}
           href={action.href}
-          className={`px-6 py-3 rounded-lg transition shadow-lg ${
+          className={`px-6 py-3 rounded-full transition shadow-lg ${
             action.primary
               ? "bg-orange-500 text-orange-50 hover:bg-orange-400"
               : "border border-orange-600 text-orange-700 hover:bg-orange-200"
