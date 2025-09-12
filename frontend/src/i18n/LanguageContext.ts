@@ -1,6 +1,4 @@
 // 📂 src/i18n/translations.ts
-
-// Diccionario de traducciones
 export const translations = {
   es: {
     home: "Inicio",
@@ -8,6 +6,7 @@ export const translations = {
     skills: "Habilidades",
     contact: "Contacto",
     about: "Sobre mí",
+    education: "Educación", // 👈 agregado
   },
   en: {
     home: "Home",
@@ -15,11 +14,9 @@ export const translations = {
     skills: "Skills",
     contact: "Contact",
     about: "About me",
+    education: "Education", // 👈 agregado
   },
-} as const; // 👈 importante para que TypeScript infiera bien las claves
+} as const;
 
-// Tipo para los idiomas disponibles
 export type Lang = keyof typeof translations; // "es" | "en"
-
-// Tipo para las claves de traducción (home | projects | skills...)
 export type TranslationKey = keyof (typeof translations)["es"];

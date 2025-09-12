@@ -1,8 +1,12 @@
+// 📂 src/constants/navbarLinks.ts
 export const navbarLinks = [
-  { path: "/", label: "Home" },
-  { path: "/projects", label: "Proyectos" },
-  { path: "/skills", label: "HABILIDADES" },
-  { path: "/about", label: "Sobre mí" },
-  { path: "/education", label: "Education" },
-  { path: "/contact", label: "Contacto" },
-];
+  { path: "/", key: "home" },
+  { path: "/projects", key: "projects" },
+  { path: "/skills", key: "skills" },
+  { path: "/about", key: "about" },
+  { path: "/education", key: "education" },
+  { path: "/contact", key: "contact" },
+] as const;
+
+// 👇 ahora sí puedes extraer el tipo
+export type NavbarLinkKey = (typeof navbarLinks)[number]["key"];
