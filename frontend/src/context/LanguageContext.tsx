@@ -1,9 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
-import type { ReactNode } from "react"; // 👈 importar como type
+import type { ReactNode } from "react";
 import { createContext, useContext, useState } from "react";
 
-import type { Lang, TranslationKey } from "../i18n/LanguageContext";
-import { translations } from "../i18n/LanguageContext";
+import {
+  translations,
+  type Lang,
+  type TranslationKey,
+} from "../i18n/LanguageContext";
 
 type LanguageContextType = {
   lang: Lang;
@@ -14,9 +17,20 @@ type LanguageContextType = {
 const LanguageContext = createContext<LanguageContextType | null>(null);
 
 export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [lang, setLang] = useState<Lang>("en");
+  const [lang, setLang] = useState<Lang>("en"); // 👈 inglés por defecto
 
-  const t = (key: TranslationKey) => translations[lang][key];
+  const t = (key: TranslationKey): string => {
+    const keys = key.split(".");
+    let value: unknown = translations[lang];
+    for (const k of keys) {
+      if (typeof value === "object" && value !== null && k in value) {
+        value = (value as Record<string, unknown>)[k];
+      } else {
+        return key;
+      }
+    }
+    return typeof value === "string" ? value : key;
+  };
 
   return (
     <LanguageContext.Provider value={{ lang, setLang, t }}>

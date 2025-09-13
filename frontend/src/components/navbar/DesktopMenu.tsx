@@ -19,7 +19,7 @@ export const DesktopMenu = ({ links }: DesktopMenuProps) => {
               }`
             }
           >
-            {t(link.key)} {/* 👈 ahora traducido */}
+            {t(`header.${link.key}`)}
           </NavLink>
         </li>
       ))}

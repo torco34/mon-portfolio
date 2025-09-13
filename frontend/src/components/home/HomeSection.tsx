@@ -1,26 +1,25 @@
+import { useLanguage } from "../../context/LanguageContext"; // 👈 corregido
 import { ActionButtons } from "../common/ActionButtons";
 import { Image } from "../common/Image";
 import type { HomeProps } from "../ts/HomeType";
 
-export const HomeSection = ({
-  title,
-  highlighted,
-  description,
-  actions = [],
-  image,
-}: HomeProps) => {
+export const HomeSection = ({ highlighted, actions = [], image }: HomeProps) => {
+  const { t } = useLanguage();
+
   return (
-    <section className="bg-gradient-to-br  min-h-screen flex items-center">
+    <section className="bg-gradient-to-br min-h-screen flex items-center">
       <div className="max-w-7xl mx-auto px-6 py-16 grid md:grid-cols-2 gap-12 items-center">
         <div className="space-y-6 animate-fadeIn">
-          <h1 className="text-4xl md:text-6xl  font-extrabold text-gray-900  leading-tight">
-            {title}{" "}
-            <span className="text-dark-400 dark:text-orange-00">
-              {highlighted}
-            </span>
+          {/* 👇 título traducido */}
+          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+            {t("home.title")}{" "}
+            <span className="text-orange-500">{highlighted}</span>
           </h1>
 
-          <p className="text-lg text-gray-600  max-w-lg">{description}</p>
+          {/* 👇 descripción traducida */}
+          <p className="text-lg text-gray-600 max-w-lg">
+            {t("home.description")}
+          </p>
 
           <div className="flex flex-wrap gap-4">
             <ActionButtons actions={actions} />

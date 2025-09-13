@@ -1,22 +1,25 @@
 // 📂 src/i18n/translations.ts
+import { header } from "./header";
+import { home } from "./home";
+import { skills } from "./skills";
+
 export const translations = {
   es: {
-    home: "Inicio",
-    projects: "Proyectos",
-    skills: "Habilidades",
-    contact: "Contacto",
-    about: "Sobre mí",
-    education: "Educación", // 👈 agregado
+    header: header.es,
+    home: home.es,
+    skills: skills.es,
   },
   en: {
-    home: "Home",
-    projects: "Projects",
-    skills: "Skills",
-    contact: "Contact",
-    about: "About me",
-    education: "Education", // 👈 agregado
+    header: header.en,
+    home: home.en,
+    skills: skills.en,
   },
 } as const;
 
-export type Lang = keyof typeof translations; // "es" | "en"
-export type TranslationKey = keyof (typeof translations)["es"];
+export type Lang = keyof typeof translations;
+
+// ✅ Traducciones con autocompletado seguro
+export type TranslationKey =
+  | `header.${keyof (typeof header)["es"]}`
+  | `home.${keyof (typeof home)["es"]}`
+  | `skills.${keyof (typeof skills)["es"]}`;
