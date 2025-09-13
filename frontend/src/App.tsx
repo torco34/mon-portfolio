@@ -9,7 +9,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import SkillsPage from "./pages/SkillsPage";
 
-import "./App.css";
+// import "./App.css";
 
 export default function App() {
   return (
