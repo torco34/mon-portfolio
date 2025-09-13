@@ -1,8 +1,14 @@
+// export interface Action {
+//   href: string;
+//   primary?: boolean;
+//   label: string;
+//   onClick: () => void;
+// }
 export interface Action {
   href: string;
+  label: "projects" | "contact" | "github"; // 👈 ya no es texto directo
   primary?: boolean;
-  label: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 export interface ActionButtonsProps {
   actions: Action[];
