@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 
 // Habilitar CORS
-app.use(cors({ origin: "http://localhost:5173" })); // o "*" en desarrollo
+app.use(cors({ origin: "http://localhost:5174" })); // o "*" en desarrollo
 
 // Puerto
 app.set('port', config.app.port || 4000);
