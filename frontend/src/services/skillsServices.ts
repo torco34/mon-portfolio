@@ -1,17 +1,10 @@
+// services/SkillService.ts
 import { API } from "../API/api";
-import type { ApiProject, Project } from "../types/servicesType";
+import type { ApiSkill } from "../types/skillsType";
 
-export class ProjectService {
-  static async getAll(): Promise<Project[]> {
-    const res = await API.get<ApiProject[]>("/projects");
-
-    // 👇 aquí hacemos el mapeo
-    return res.data.map((p) => ({
-      id: p.id,
-      title: p.title,
-      description: p.description,
-      image: p.image_url,
-      actions: p.repo_url ? [{ label: "Repositorio", href: p.repo_url }] : [],
-    }));
+export class SkillService {
+  static async getByUser(username: string): Promise<ApiSkill[]> {
+    const res = await API.get<ApiSkill[]>(`/skills/${username}`);
+    return res.data;
   }
 }
