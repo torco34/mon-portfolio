@@ -12,7 +12,7 @@ const app = express();
 
 // Middleware de logging manual
 app.use((req, res, next) => {
-    console.log("📥 Petición recibida:", req.method, req.url);
+
     next();
 });
 

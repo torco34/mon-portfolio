@@ -1,5 +1,6 @@
 // hooks/useProjects.ts
 import { useEffect, useState } from "react";
+
 import { ProjectService } from "../services/projectService";
 import type { Project } from "../types/servicesType";
 
@@ -14,7 +15,7 @@ export function useProjects() {
       setError(null);
 
       try {
-        const data = await ProjectService.getAll(); // ✅ llamada correcta
+        const data = await ProjectService.getAll();
         setProjects(data);
       } catch (err: unknown) {
         if (err instanceof Error) {
