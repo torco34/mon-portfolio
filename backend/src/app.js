@@ -4,10 +4,11 @@ const cors = require('cors');
 const config = require('./config/config');
 const coursesRouter = require("./router/coursesRouter");
 const contactRouter = require("./router/contactsRouter");
-const skillsRouter = require("./router/skillRouter");
+// const skillsRouter = require("./router/skillRouter");s
 const clientesRoutes = require('./router/experiencesRouter');
 const projectsRoutes = require('./router/projectRouter');
-const githubRouter = require("./router/githubRouter");
+
+const skillsRoutes = require("./router/skillRouter");
 const app = express();
 
 // Middleware de logging manual
@@ -47,10 +48,11 @@ console.log("GitHub user:", config.github.username);
 // Rutas de proyectos
 app.use('/api/projects', projectsRoutes);
 app.use("/api/contact", contactRouter);
-app.use("/api/skills", skillsRouter);
+// app.use("/api/skills", skillsRouter);
 app.use('/api/experiences', clientesRoutes);
 app.use("/api/courses", coursesRouter);
-app.use("/api/github", githubRouter);
+
+app.use("/api/skills", skillsRoutes);
 
 // app.use("/api/skills", skillsRoutes);
 
