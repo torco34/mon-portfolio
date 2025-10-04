@@ -1,16 +1,20 @@
 import { PageHeader } from "../components/common/PageHeader";
 import { SectionProject } from "../components/projects/SectionProject";
-// src/pages/ProjectsPage.tsx
+import { useLanguage } from "../context/LanguageContext";
 
 export default function ProjectsPage() {
+  const { t } = useLanguage();
+
   return (
     <>
       <PageHeader
-        title="Proyectos"
-        description="Aplicación desarrollada con Node.js, Express y React, conectada a una base de datos MySQL."
+        title={t("projects.header.title")}
+        description={t("projects.header.description")}
       />
 
       <SectionProject />
     </>
   );
 }
+
+

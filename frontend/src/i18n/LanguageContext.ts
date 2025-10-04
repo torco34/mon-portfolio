@@ -1,18 +1,20 @@
 // 📂 src/i18n/translations.ts
 import { header } from "./header";
 import { home } from "./home";
+import { projects } from "./infoHeader/projects";
 import { skills } from "./skills";
-
 export const translations = {
   es: {
     header: header.es,
     home: home.es,
     skills: skills.es,
+    projects: projects.es,
   },
   en: {
     header: header.en,
     home: home.en,
     skills: skills.en,
+    projects: projects.en,
   },
 } as const;
 
@@ -22,4 +24,5 @@ export type Lang = keyof typeof translations;
 export type TranslationKey =
   | `header.${keyof (typeof header)["es"]}`
   | `home.${keyof (typeof home)["es"]}`
-  | `skills.${keyof (typeof skills)["es"]}`;
+  | `skills.${keyof (typeof skills)["es"]}`
+  | `projects.${keyof (typeof projects)["es"]}`;
