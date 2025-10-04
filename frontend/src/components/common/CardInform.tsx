@@ -1,28 +1,13 @@
-import React from "react";
-
+import type { CardItemProps } from "../../types/commonType";
 import { Image } from "./Image";
 
-type CardAction = {
-  label: string;
-  href?: string;
-  onClick?: () => void;
-};
-
-interface CardItemProps {
-  title: string;
-  subtitle?: string;
-  description?: string;
-  image?: string;
-  actions?: CardAction[];
-}
-
-export const CardInform: React.FC<CardItemProps> = ({
+export const CardInform = ({
   title,
   subtitle,
   description,
   image,
   actions = [],
-}) => {
+}: CardItemProps) => {
   return (
     <div
       role="group"
