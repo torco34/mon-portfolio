@@ -1,14 +1,16 @@
 import { PageHeader } from "../components/common/PageHeader";
-import SkillsSection from "../components/skills/SkillsSection";
+import { useLanguage } from "../context/LanguageContext";
 
 export default function SkillsPage() {
+  const { t } = useLanguage();
   return (
     <>
       <PageHeader
-        title="HABILIDADES"
-        description="Estas son las tecnologías y lenguajes que utilizo en mis proyectos."
+        title={t("skills.header.title")}
+        description={t("skills.header.description")}
       />
-      <SkillsSection username="torco34" />
+
+      {/* <SkillsSection username="torco34" /> */}
     </>
   );
 }
