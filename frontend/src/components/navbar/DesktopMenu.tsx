@@ -14,8 +14,8 @@ export const DesktopMenu = ({ links }: DesktopMenuProps) => {
             className={({ isActive }) =>
               `transition-colors ${
                 isActive
-                  ? "text-orange-300 border-b-2 font-bold border-primary pb-1"
-                  : "hover:text-orange-300"
+                  ? "text-[#F875AA] border-b-2 font-bold border-primary pb-1"
+                  : "hover:text-[#F875AA]"
               }`
             }
           >

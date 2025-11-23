@@ -9,7 +9,7 @@ export const MenuToggleButton = ({
     <button
       className="md:hidden  text-orange-600"
       onClick={onClick}
-      aria-label="Toggle menu"
+      aria-label="Toggle ss menu"
     >
       {menuOpen ? <X size={28} /> : <Menu size={28} />}
     </button>

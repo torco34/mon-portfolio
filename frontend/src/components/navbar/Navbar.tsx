@@ -18,7 +18,7 @@ export default function Navbar() {
   // const { lang, setLang } = useLanguage();
 
   return (
-    <nav className="fixed w-full bg-white shadow-md z-150">
+    <nav className="fixed w-full text-[#3D3B40] bg-white shadow-md z-150">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         <Logo />
 

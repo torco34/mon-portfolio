@@ -12,7 +12,7 @@ export function LanguageToggleButton({ className }: LanguageToggleButtonProps) {
     <button
       onClick={() => setLang(lang === "es" ? "en" : "es")}
       aria-label="Cambiar idioma"
-      className={`ml-4 flex items-center gap-2 px-3 py-2 border border-orange-400 bg-orange-50 text-orange-500 rounded-full shadow-md hover:bg-orange-200 transition ${className}`}
+      className={`ml-4 flex items-center gap-2 px-3 py-2  bg-[#F6F5F5] text-[#3D3B40] rounded-full shadow-md hover:bg-white transition ${className}`}
     >
       {lang === "es" ? (
         <>
