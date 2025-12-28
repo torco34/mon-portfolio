@@ -2,7 +2,7 @@
 export const header = {
   es: {
     home: "Inicio",
-    projects: "Proyectos",
+    projects: "Experiencia",
     skills: "Habilidades",
     contact: "Contacto",
     about: "Sobre mí",
@@ -10,7 +10,7 @@ export const header = {
   },
   en: {
     home: "Home",
-    projects: "Projects",
+    projects: "Experience",
     skills: "Skills",
     contact: "Contact",
     about: "About me",

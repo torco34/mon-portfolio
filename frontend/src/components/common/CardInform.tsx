@@ -1,3 +1,4 @@
+import { ArrowRight } from "lucide-react";
 import type { CardItemProps } from "../../types/commonType";
 import { Image } from "./Image";
 
@@ -9,35 +10,36 @@ export const CardInform = ({
   actions = [],
 }: CardItemProps) => {
   return (
-    <div
-      role="group"
-      className="bg-orange-50 border border-orange-200 rounded-2xl p-6 shadow-md hover:shadow-lg hover:-translate-y-1 transition flex flex-col gap-4"
-    >
-      {/* Imagen opcional */}
+    <div className="bg-[#F6F5F5] rounded-2xl shadow-md p-6 flex flex-col items-center  gap-4 w-full max-w-sm">
+      {/* Imagen */}
       {image && (
-        <div className="flex justify-center">
+        <div className="w-52 h-52 rounded-full overflow-hidden shadow">
           <Image
             src={image}
             alt={title || ""}
-            className="max-w-[300px] rounded-xl"
+            className="w-full h-full object-cover"
           />
         </div>
       )}
 
       {/* Texto */}
-      <div>
-        <h3 className="text-xl font-bold text-orange-400">{title}</h3>
-        {subtitle && <p className="text-gray-700 font-medium">{subtitle}</p>}
+      <div className="px-2">
+        <h3 className="text-2xl text-left font-bold text-[#F73D93]">{title}</h3>
+
+        {subtitle && (
+          <p className="text-gray-700 font-medium mt-1">{subtitle}</p>
+        )}
+
         {description && (
-          <p className="text-gray-600 h-30 text-sm mt-2 leading-relaxed">
+          <p className="text-gray-600 text-sm mt-5 text-left leading-relaxed">
             {description}
           </p>
         )}
       </div>
 
-      {/* Acciones opcionales */}
+      {/* Acciones */}
       {actions.length > 0 && (
-        <div className="flex flex-col gap-3 mt-3">
+        <div className="w-full flex flex-col items-cente gap-3 ">
           {actions.map((action, idx) =>
             action.href ? (
               <a
@@ -45,15 +47,16 @@ export const CardInform = ({
                 href={action.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full  py-2 text-sm text-center bg-orange-400 text-white rounded-lg shadow hover:bg-orange-500 transition"
+                className="w-full flex items-center justify-center gap-2 py-2 bg-[#F73D93] text-white rounded-full hover:bg-[#d62978] transition shadow"
               >
                 {action.label}
+                <ArrowRight size={18} />
               </a>
             ) : (
               <button
                 key={idx}
                 onClick={action.onClick}
-                className="w-full py-2 text-sm text-center bg-orange-600 text-white rounded-lg shadow hover:bg-orange-700 transition"
+                className="w-full py-2 bg-orange-600 text-white rounded-full hover:bg-orange-700 transition shadow"
               >
                 {action.label}
               </button>

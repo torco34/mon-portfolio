@@ -5,6 +5,7 @@ export const navbarLinks = [
   { path: "/skills", key: "skills" },
   { path: "/about", key: "about" },
   { path: "/education", key: "education" },
+  { path: "/experience", key: "experience" },
   { path: "/contact", key: "contact" },
 ] as const;
 

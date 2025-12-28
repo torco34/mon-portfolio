@@ -12,16 +12,17 @@ export function LanguageToggleButton({ className }: LanguageToggleButtonProps) {
     <button
       onClick={() => setLang(lang === "es" ? "en" : "es")}
       aria-label="Cambiar idioma"
-      className={`ml-4 flex items-center gap-2 px-3 py-2  bg-[#F6F5F5] text-[#3D3B40] rounded-full shadow-md hover:bg-white transition ${className}`}
+      className={`group flex items-center gap-2 px-3 py-2 bg-stone-100 text-stone-700 rounded-lg border border-stone-200 shadow-sm hover:shadow hover:bg-stone-200 hover:text-stone-900 transition-all duration-300 ${className}`}
     >
       {lang === "es" ? (
         <>
-          <Globe size={18} /> <span className="hidden sm:inline">ENGLISH</span>
+          <Globe size={16} className="group-hover:scale-110 transition-transform duration-300" />
+          <span className="hidden sm:inline text-xs font-medium">EN</span>
         </>
       ) : (
         <>
-          <Languages size={18} />{" "}
-          <span className="hidden sm:inline">ESPAÑOL</span>
+          <Languages size={16} className="group-hover:scale-110 transition-transform duration-300" />
+          <span className="hidden sm:inline text-xs font-medium">ES</span>
         </>
       )}
     </button>

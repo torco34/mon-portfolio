@@ -3,9 +3,9 @@ import type { ApiProject, Project } from "../types/servicesType";
 
 export class ProjectService {
   static async getAll(): Promise<Project[]> {
-    const res = await API.get<ApiProject[]>("/projects");
-
-    // 👇 aquí hacemos el mapeo
+console.log(API, "rllflrf,lr");
+const res = await API.get<ApiProject[]>("/projects");
+console.log(res);
     return res.data.map((p) => ({
       id: p.id,
       title: p.title,

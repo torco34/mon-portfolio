@@ -18,21 +18,23 @@ export default function Navbar() {
   // const { lang, setLang } = useLanguage();
 
   return (
-    <nav className="fixed w-full text-[#3D3B40] bg-white shadow-md z-150">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+    <nav className="fixed w-full h-16 md:h-20 text-stone-700 bg-white/95 backdrop-blur-sm border-b border-stone-200 shadow-sm z-50">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8 h-full flex justify-between items-center">
         <Logo />
 
         {/* Menú escritorio */}
         <DesktopMenu links={navbarLinks} />
 
-        {/* Botón para cambiar idioma */}
-        <LanguageToggleButton className="ml-4" />
+        <div className="flex items-center gap-4">
+          {/* Botón para cambiar idioma */}
+          <LanguageToggleButton className="ml-4" />
 
-        {/* Botón menú móvil */}
-        <MenuToggleButton
-          menuOpen={menuOpen}
-          onClick={() => setMenuOpen(!menuOpen)}
-        />
+          {/* Botón menú móvil */}
+          <MenuToggleButton
+            menuOpen={menuOpen}
+            onClick={() => setMenuOpen(!menuOpen)}
+          />
+        </div>
       </div>
 
       {/* Menú móvil */}

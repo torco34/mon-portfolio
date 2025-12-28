@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 
 type EduItem = {
   id: string;
-  title: string;
-  subtitle?: string;
+  titulo: string;
+  institucion?: string;
+  inicio?: string;
   period?: string;
+  duracion?: string;
   description: string;
   level?: "Básico" | "Intermedio" | "Avanzado";
   link?: string;
@@ -70,9 +72,9 @@ export default function EducationPage() {
                           {e.titulo}
                         </p>
                         <p className="text-xs text-gray-500">{e.period}</p>
-                        <p className="text-xs text-gray-600 mt-1">
-                          {e.subtitle}
-                        </p>
+                         <p className="text-xs text-gray-600 mt-1">
+                           {e.institucion}
+                         </p>
                       </div>
                     </li>
                   ))}

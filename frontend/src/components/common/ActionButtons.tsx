@@ -1,12 +1,6 @@
 import { useLanguage } from "../../context/LanguageContext";
-import type { Action } from "../ts/HomeType";
-
-// Add this import or definition for TranslationKey
-type TranslationKey = string;
-
-interface ActionButtonsProps {
-  actions: Action[];
-}
+import type { TranslationKey } from "../../i18n/LanguageContext";
+import type { ActionButtonsProps } from "../ts/HomeType";
 
 export const ActionButtons: React.FC<ActionButtonsProps> = ({ actions }) => {
   const { t } = useLanguage();
@@ -14,16 +8,12 @@ export const ActionButtons: React.FC<ActionButtonsProps> = ({ actions }) => {
   if (!actions || actions.length === 0) return null;
 
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="flex  gap-3">
       {actions.map((action, idx) => (
         <a
           key={idx}
           href={action.href}
-          className={`px-6 py-3 rounded-full transition shadow-lg ${
-            action.primary
-              ? "bg-orange-200 text-dark-900 hover:bg-orange-50"
-              : "border border-orange-300 bg-orange-50 text-orange-400 hover:bg-orange-200"
-          }`}
+          className="flex items-center justify-center rounded-full h-10 w-30 border border-gray-300 bg-white text-cyan-400 transition hover:bg-cyan-400 hover:text-white"
         >
           {t(`home.actions.${action.label}` as TranslationKey)}
         </a>
