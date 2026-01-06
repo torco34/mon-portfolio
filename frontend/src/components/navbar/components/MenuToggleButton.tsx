@@ -1,5 +1,5 @@
 import { Menu, X } from "lucide-react";
-import type { MenuToggleButtonProps } from "./NavbarTypes";
+import type { MenuToggleButtonProps } from "../NavbarTypes";
 
 export const MenuToggleButton = ({
   menuOpen,

@@ -53,11 +53,8 @@ export default function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-orange-50 dark:bg-orange-50 shadow-xl rounded-2xl p-8 space-y-6 border border-orange-200 max-w-lg mx-auto"
+      className="space-y-6"
     >
-      <h2 className="text-2xl font-bold text-orange-400 mb-4 text-center">
-        Contáctame
-      </h2>
 
       <InputField
         label="Nombre"
@@ -86,17 +83,34 @@ export default function ContactForm() {
 
       {/* Estado del envío */}
       {status === "loading" && (
-        <p className="text-orange-500 text-center animate-pulse">Enviando...</p>
+        <div className="text-center">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500/20 to-purple-600/20 border border-pink-500/30 rounded-full px-4 py-2">
+            <div className="w-3 h-3 rounded-full bg-gradient-to-r from-pink-400 to-cyan-400 animate-pulse"></div>
+            <span className="text-sm font-medium text-pink-300">Enviando mensaje...</span>
+          </div>
+        </div>
       )}
       {status === "success" && (
-        <p className="text-green-600 text-center font-semibold">
-          ✅ Mensaje enviado con éxito
-        </p>
+        <div className="text-center bg-gradient-to-r from-green-500/20 to-emerald-600/20 border border-green-500/30 rounded-xl p-4">
+          <div className="inline-flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-green-400 to-emerald-500 flex items-center justify-center">
+              <span className="text-white text-sm">✓</span>
+            </div>
+            <span className="font-semibold text-green-300">¡Mensaje enviado con éxito!</span>
+          </div>
+          <p className="text-sm text-green-400/80 mt-2">Te responderé en menos de 24 horas.</p>
+        </div>
       )}
       {status === "error" && (
-        <p className="text-red-600 text-center font-semibold">
-          ❌ Ocurrió un error al enviar. Intenta nuevamente.
-        </p>
+        <div className="text-center bg-gradient-to-r from-red-500/20 to-pink-600/20 border border-red-500/30 rounded-xl p-4">
+          <div className="inline-flex items-center gap-2">
+            <div className="w-6 h-6 rounded-full bg-gradient-to-r from-red-400 to-pink-500 flex items-center justify-center">
+              <span className="text-white text-sm">✗</span>
+            </div>
+            <span className="font-semibold text-red-300">Error al enviar el mensaje</span>
+          </div>
+          <p className="text-sm text-red-400/80 mt-2">Por favor, intenta nuevamente.</p>
+        </div>
       )}
     </form>
   );

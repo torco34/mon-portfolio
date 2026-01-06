@@ -1,6 +1,7 @@
 // 📂 src/constants/navbarLinks.ts
 export const navbarLinks = [
   { path: "/", key: "home" },
+  { path: "/premium", key: "premium" },
   { path: "/projects", key: "projects" },
   { path: "/skills", key: "skills" },
   { path: "/about", key: "about" },

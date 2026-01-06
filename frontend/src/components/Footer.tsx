@@ -4,7 +4,7 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative mt-auto border-t border-gray-200 bg-white/80 backdrop-blur-sm">
+     <footer className="relative mt-auto border-t border-white/10 bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-sm">
       {/* Wave divider */}
       <div className="absolute -top-6 left-0 right-0 h-6 overflow-hidden">
         <svg

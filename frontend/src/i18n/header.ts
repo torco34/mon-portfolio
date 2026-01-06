@@ -2,18 +2,22 @@
 export const header = {
   es: {
     home: "Inicio",
-    projects: "Experiencia",
+    premium: "Premium",
+    projects: "Proyectos",
     skills: "Habilidades",
     contact: "Contacto",
     about: "Sobre mí",
     education: "Educación",
+    experience: "Experiencia",
   },
   en: {
     home: "Home",
-    projects: "Experience",
+    premium: "Premium",
+    projects: "Projects",
     skills: "Skills",
     contact: "Contact",
     about: "About me",
     education: "Education",
+    experience: "Experience",
   },
 };

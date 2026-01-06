@@ -1,5 +1,5 @@
 import { Globe, Languages } from "lucide-react";
-import { useLanguage } from "../../context/LanguageContext";
+import { useLanguage } from "../../../context/LanguageContext";
 
 interface LanguageToggleButtonProps {
   className?: string; // opcional para estilos extra
@@ -16,12 +16,18 @@ export function LanguageToggleButton({ className }: LanguageToggleButtonProps) {
     >
       {lang === "es" ? (
         <>
-          <Globe size={16} className="group-hover:scale-110 transition-transform duration-300" />
+          <Globe
+            size={16}
+            className="group-hover:scale-110 transition-transform duration-300"
+          />
           <span className="hidden sm:inline text-xs font-medium">EN</span>
         </>
       ) : (
         <>
-          <Languages size={16} className="group-hover:scale-110 transition-transform duration-300" />
+          <Languages
+            size={16}
+            className="group-hover:scale-110 transition-transform duration-300"
+          />
           <span className="hidden sm:inline text-xs font-medium">ES</span>
         </>
       )}

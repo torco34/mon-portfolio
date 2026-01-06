@@ -4,14 +4,14 @@ export const projects = {
     header: {
       title: "Proyectos",
       description:
-        "Aplicación desarrollada con Node.js, Express y React, conectada a una base de datos MySQL.",
+        "Portafolio de soluciones innovadoras desarrolladas con tecnologías modernas.",
     },
   },
   en: {
     header: {
       title: "Projects",
       description:
-        "Application developed with Node.js, Express, and React, connected to a MySQL database.",
+        "Portfolio of innovative solutions developed with modern technologies.",
     },
   },
 };

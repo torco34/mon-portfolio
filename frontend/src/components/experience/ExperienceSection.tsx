@@ -68,16 +68,16 @@ const ExperienceSection = () => {
     }
   };
 
-  const getTypeColor = (type: string) => {
+   const getTypeColor = (type: string) => {
     switch (type) {
       case "work":
-        return "bg-amber-100 text-amber-800 border-amber-200";
+        return "bg-gradient-to-r from-pink-500/20 to-purple-600/20 text-pink-300 border-pink-500/30";
       case "education":
-        return "bg-orange-100 text-orange-800 border-orange-200";
+        return "bg-gradient-to-r from-cyan-500/20 to-blue-500/20 text-cyan-300 border-cyan-500/30";
       case "certification":
-        return "bg-yellow-100 text-yellow-800 border-yellow-200";
+        return "bg-gradient-to-r from-green-500/20 to-emerald-600/20 text-green-300 border-green-500/30";
       default:
-        return "bg-amber-100 text-amber-800 border-amber-200";
+        return "bg-gradient-to-r from-pink-500/20 to-purple-600/20 text-pink-300 border-pink-500/30";
     }
   };
 
@@ -86,12 +86,12 @@ const ExperienceSection = () => {
       <div className="container mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            <span className="bg-gradient-to-r from-amber-600 to-orange-600 bg-clip-text text-transparent">
+           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
+            <span className="bg-gradient-to-r from-pink-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
               Experiencia & Formación
             </span>
           </h2>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
             Mi trayectoria profesional y académica en el mundo del desarrollo
           </p>
         </div>
@@ -99,7 +99,7 @@ const ExperienceSection = () => {
         {/* Timeline */}
         <div className="relative max-w-4xl mx-auto">
           {/* Timeline line */}
-          <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-amber-300 via-orange-300 to-yellow-300"></div>
+           <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 h-full w-1 bg-gradient-to-b from-pink-500 via-purple-500 to-cyan-500"></div>
 
           {/* Experience items */}
           <div className="space-y-12">
@@ -111,7 +111,7 @@ const ExperienceSection = () => {
                 }`}
               >
                 {/* Timeline dot */}
-                <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-gradient-to-r from-amber-500 to-orange-500 rounded-full border-4 border-white shadow-lg z-10"></div>
+                 <div className="absolute left-0 md:left-1/2 transform md:-translate-x-1/2 w-6 h-6 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full border-4 border-gray-900 shadow-lg z-10"></div>
 
                 {/* Content */}
                 <div
@@ -119,7 +119,7 @@ const ExperienceSection = () => {
                     index % 2 === 0 ? "md:pr-12 md:text-right" : "md:pl-12"
                   }`}
                 >
-                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-amber-100 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+                   <div className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/10 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
                     {/* Type badge */}
                     <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${getTypeColor(exp.type)} text-sm font-medium mb-4`}>
                       {getTypeIcon(exp.type)}
@@ -127,14 +127,14 @@ const ExperienceSection = () => {
                     </div>
 
                     {/* Title and company */}
-                    <h3 className="text-xl font-bold text-gray-900 mb-2">{exp.title}</h3>
-                    <div className="flex items-center gap-2 text-amber-700 font-medium mb-3">
+                     <h3 className="text-xl font-bold text-white mb-2">{exp.title}</h3>
+                    <div className="flex items-center gap-2 text-pink-300 font-medium mb-3">
                       <Briefcase className="w-4 h-4" />
                       <span>{exp.company}</span>
                     </div>
 
                     {/* Details */}
-                    <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-4">
+                     <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-4">
                       <div className="flex items-center gap-1">
                         <MapPin className="w-4 h-4" />
                         <span>{exp.location}</span>
@@ -146,14 +146,14 @@ const ExperienceSection = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-gray-700 mb-4 leading-relaxed">{exp.description}</p>
+                     <p className="text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
 
                     {/* Skills */}
                     <div className="flex flex-wrap gap-2">
                       {exp.skills.map((skill, idx) => (
-                        <span
+                         <span
                           key={idx}
-                          className="px-3 py-1 bg-amber-50 text-amber-800 text-xs font-medium rounded-full border border-amber-200"
+                          className="px-3 py-1 bg-gradient-to-r from-pink-500/10 to-purple-600/10 text-pink-300 text-xs font-medium rounded-full border border-pink-500/30"
                         >
                           {skill}
                         </span>
@@ -164,7 +164,7 @@ const ExperienceSection = () => {
 
                 {/* Date for desktop */}
                 <div className={`hidden md:block md:w-2/12 ${index % 2 === 0 ? "md:text-left" : "md:text-right"}`}>
-                  <div className="px-4 py-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg shadow-md">
+                   <div className="px-4 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg shadow-md">
                     <span className="font-bold">{exp.period.split(" ")[0]}</span>
                   </div>
                 </div>
@@ -177,7 +177,7 @@ const ExperienceSection = () => {
         <div className="text-center mt-12 md:mt-16">
           <a
             href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white font-bold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105 group"
+             className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-pink-500 to-purple-600 text-white font-bold rounded-full hover:shadow-xl transition-all duration-300 hover:scale-105 group"
           >
             <span>Ver CV Completo</span>
             <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
